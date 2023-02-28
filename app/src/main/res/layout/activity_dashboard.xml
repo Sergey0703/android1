@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DashboardActivity">
+
+    <TextView
+        android:id="@+id/dashUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="User"
+        android:layout_margin="30dp"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="302dp" >
+    </TextView>
+</RelativeLayout>

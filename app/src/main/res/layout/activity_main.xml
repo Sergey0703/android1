@@ -50,6 +50,7 @@
         android:layout_below="@+id/txtWelcome"
         android:layout_gravity="center_horizontal"
         android:layout_margin="30dp"
+        android:textSize="20sp"
         android:id="@+id/btnLogin"
         android:onClick="onHelloBtnClick"
         android:text="Login">

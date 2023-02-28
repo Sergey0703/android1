@@ -2,7 +2,9 @@ package com.example.evocab;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -52,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Login Successful",Toast.LENGTH_LONG).show();
+                  //  token=response.body().getToken();
+                    LoginResponse loginResponse= response.body();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println("loginResponse.getUsername()="+loginResponse.getEmail());
+                            startActivity(new Intent(MainActivity.this,DashboardActivity.class).putExtra("data",loginResponse.getEmail()));
+                        }
+                    },700);
                 }else{
                     Toast.makeText(MainActivity.this, "Login Failed",Toast.LENGTH_LONG).show();
                 }
