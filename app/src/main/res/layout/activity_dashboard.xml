@@ -61,7 +61,7 @@
 
         android:textSize="20sp"
         android:id="@+id/btnWordOk"
-        android:onClick="onHelloBtnClick"
+        android:onClick="onOkBtnClick"
         android:text="I know">
 
     </Button>
