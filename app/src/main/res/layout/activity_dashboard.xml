@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DashboardActivity">
+
 
     <TextView
         android:id="@+id/dashUserName"
@@ -13,8 +15,55 @@
         android:layout_gravity="center_horizontal"
         android:text="User"
         android:layout_margin="30dp"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="302dp" >
+        android:textSize="20sp">
     </TextView>
-</RelativeLayout>
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp" >
+
+        <TextView
+            android:id="@+id/dashWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:text="Word"
+            android:layout_margin="30dp"
+            android:textSize="20sp">
+        </TextView>
+
+        <Button
+            android:id="@+id/btnWordStudy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:onClick="onHelloBtnClick"
+            android:text="Study"
+            android:textSize="20sp">
+        </Button>
+
+    <Button
+        android:id="@+id/btnWordTranslate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:onClick="onHelloBtnClick"
+        android:text="Show/Hide Translate"
+        android:textSize="20sp">
+
+    </Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dashUserName"
+        android:layout_gravity="bottom|right"
+
+        android:textSize="20sp"
+        android:id="@+id/btnWordOk"
+        android:onClick="onHelloBtnClick"
+        android:text="I know">
+
+    </Button>
+    </FrameLayout>
+</LinearLayout>
