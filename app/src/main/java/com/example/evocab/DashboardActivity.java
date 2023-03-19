@@ -47,7 +47,7 @@ public class DashboardActivity extends AppCompatActivity {
     public void takeWord(){
         LoginRequest loginRequest=new LoginRequest();
 
-        Call<LoginResponse> loginResponseCall=ApiClient.getUserService().userLogin(loginRequest);
+        Call<LoginResponse> loginResponseCall=ApiClient.getApiService().userLogin(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {

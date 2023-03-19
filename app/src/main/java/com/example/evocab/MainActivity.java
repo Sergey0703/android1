@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         loginRequest.setUsername(username.getText().toString());
         loginRequest.setPassword(password.getText().toString());
 
-        Call<LoginResponse> loginResponseCall=ApiClient.getUserService().userLogin(loginRequest);
+        Call<LoginResponse> loginResponseCall=ApiClient.getApiService().userLogin(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
