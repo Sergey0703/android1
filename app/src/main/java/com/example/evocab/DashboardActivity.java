@@ -35,6 +35,7 @@ public class DashboardActivity extends AppCompatActivity {
         btnWordOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+              System.out.println("Ok");
               takeWord();
             }
         });
@@ -45,16 +46,20 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     public void takeWord(){
-        LoginRequest loginRequest=new LoginRequest();
 
-        Call<LoginResponse> loginResponseCall=ApiClient.getApiService().userLogin(loginRequest);
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+
+        WordRequest wordRequest=new WordRequest();
+        System.out.println("Ok2");
+        //Call<WordResponse> wordResponseCall=ApiClient.getApiService().getWord(wordRequest);
+        Call<WordResponse> wordResponseCall=ApiClient.getApiService().getWord();
+        System.out.println("Ok3");
+        wordResponseCall.enqueue(new Callback<WordResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<WordResponse> call, Response<WordResponse> response) {
                 if (response.isSuccessful()){
                     Toast.makeText(DashboardActivity.this, " Successful",Toast.LENGTH_LONG).show();
                     //  token=response.body().getToken();
-                    LoginResponse loginResponse= response.body();
+                    WordResponse wordResponse= response.body();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -69,7 +74,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<WordResponse> call, Throwable t) {
                 Toast.makeText(DashboardActivity.this, "Trouble "+t.getLocalizedMessage() ,Toast.LENGTH_LONG).show();
             }
         });

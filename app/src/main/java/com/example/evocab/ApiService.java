@@ -10,9 +10,7 @@ public interface ApiService {
     @POST("api/token/auth/")
     Call<LoginResponse> userLogin(@Body LoginRequest loginRequest);
 
-  @GET("api/words/")
-  Call<WordResponse> getWord(@Body LoginRequest loginRequest);
-
-
+    @GET("api/words/")
+    Call<WordResponse> getWord();
 
 }
