@@ -57,6 +57,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<WordResponse> call, Response<WordResponse> response) {
                 if (response.isSuccessful()){
+                    System.out.println("Successful");
                     Toast.makeText(DashboardActivity.this, " Successful",Toast.LENGTH_LONG).show();
                     //  token=response.body().getToken();
                     WordResponse wordResponse= response.body();
@@ -69,12 +70,14 @@ public class DashboardActivity extends AppCompatActivity {
                         }
                     },700);
                 }else{
+                    System.out.println("Failed....");
                     Toast.makeText(DashboardActivity.this, " Failed",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<WordResponse> call, Throwable t) {
+                System.out.println("Trouble "+t.getLocalizedMessage());
                 Toast.makeText(DashboardActivity.this, "Trouble "+t.getLocalizedMessage() ,Toast.LENGTH_LONG).show();
             }
         });
