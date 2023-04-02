@@ -2,16 +2,57 @@ package com.example.evocab;
 
 public class WordResponse {
 
-    private String word_id;
+    private String id;
     private String word;
     private String translate;
 
-    public String getWord_id() {
-        return word_id;
+    private String trainDate;
+
+    private String sound;
+
+    private Boolean train1;
+    private String transcript;
+
+
+    public String getTrainDate() {
+        return trainDate;
     }
 
-    public void setWord_id(String word_id) {
-        this.word_id = word_id;
+    public void setTrainDate(String trainDate) {
+        this.trainDate = trainDate;
+    }
+
+    public String getSound() {
+        return sound;
+    }
+
+    public void setSound(String sound) {
+        this.sound = sound;
+    }
+
+    public Boolean getTrain1() {
+        return train1;
+    }
+
+    public void setTrain1(Boolean train1) {
+        this.train1 = train1;
+    }
+
+    public String getTranscript() {
+        return transcript;
+    }
+
+    public void setTranscript(String transcript) {
+        this.transcript = transcript;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String word_id) {
+        this.id = id;
     }
 
     public String getWord() {
