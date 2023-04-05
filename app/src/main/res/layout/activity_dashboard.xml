@@ -5,41 +5,93 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="5dp"
     tools:context=".DashboardActivity">
 
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp" >
 
     <TextView
         android:id="@+id/dashUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="start"
         android:text="User"
-        android:layout_margin="30dp"
+        android:layout_margin="0dp"
         android:textSize="20sp">
     </TextView>
-    <FrameLayout
-        android:id="@+id/frameLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp" >
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="end"
+            android:layout_margin="0dp"
+            app:srcCompat="@drawable/english3" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="100dp"
+        android:layout_margin="10dp" >
+    <FrameLayout
+        android:id="@+id/frameLayout20"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_gravity="top|left"
+        android:layout_margin="0dp" >
         <TextView
             android:id="@+id/dashWord"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|left"
+            android:layout_height="50dp"
+            android:layout_gravity="top"
             android:text="Word"
-            android:layout_margin="30dp"
+            android:layout_margin="0dp"
             android:textSize="20sp">
         </TextView>
 
+        <TextView
+            android:id="@+id/dashTranscript"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="0dp"
+            android:text="Transcript"
+            android:textSize="20sp"></TextView>
+    </FrameLayout>
+
+        <Button
+            android:id="@+id/btnSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:onClick="onHelloBtnClick"
+            android:text="Sound"
+            android:background="@drawable/rounded_corner"
+            android:textSize="@dimen/buttonTextSize"></Button>
+
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="100dp"
+        android:layout_margin="10dp" >
         <TextView
             android:id="@+id/dashTranslate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
             android:text="Translate"
-            android:layout_margin="30dp"
+            android:layout_margin="0dp"
             android:textSize="20sp">
         </TextView>
 
@@ -50,17 +102,25 @@
             android:layout_gravity="center|right"
             android:onClick="onHelloBtnClick"
             android:text="Study"
-            android:textSize="20sp">
-        </Button>
-
-    <Button
+            android:background="@drawable/rounded_corner"
+            android:textSize="@dimen/buttonTextSize"></Button>
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/frameLayout4"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="100dp"
+        android:layout_margin="10dp" >
+        <Button
         android:id="@+id/btnWordTranslate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
         android:onClick="onHelloBtnClick"
         android:text="Show/Hide Translate"
-        android:textSize="20sp">
+        android:layout_marginRight="5dp"
+        android:background="@drawable/rounded_corner"
+        android:textSize="@dimen/buttonTextSize">
 
     </Button>
     <Button
@@ -68,10 +128,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dashUserName"
         android:layout_gravity="bottom|right"
-
-        android:textSize="20sp"
+        android:textSize="@dimen/buttonTextSize"
         android:id="@+id/btnWordOk"
         android:onClick="onOkBtnClick"
+        android:background="@drawable/rounded_corner"
         android:text="I know">
 
     </Button>

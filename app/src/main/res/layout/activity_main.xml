@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <!--android:background="@drawable/background3" -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/english3" />
+
 
     <TextView
         android:id="@+id/txtWelcome"
@@ -50,10 +58,15 @@
         android:layout_below="@+id/txtWelcome"
         android:layout_gravity="center_horizontal"
         android:layout_margin="30dp"
+
         android:textSize="20sp"
+        android:paddingVertical="10dp"
         android:id="@+id/btnLogin"
         android:onClick="onHelloBtnClick"
+        android:background="@drawable/rounded_corner"
         android:text="Login">
 
     </Button>
+
+
 </LinearLayout>
