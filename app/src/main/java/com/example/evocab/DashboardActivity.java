@@ -18,9 +18,13 @@ import retrofit2.Response;
 public class DashboardActivity extends AppCompatActivity {
     Button btnWordOk;
     Button btnWordStudy;
+    TextView wordsTodayCount;
+    TextView wordsTodayBadCount;
+
     TextView username;
     TextView word;
 
+    TextView transcript;
     TextView translate;
 
     String id;
@@ -31,14 +35,17 @@ public class DashboardActivity extends AppCompatActivity {
         btnWordOk=findViewById(R.id.btnWordOk);
         btnWordStudy=findViewById(R.id.btnWordStudy);
 
-        username=findViewById(R.id.dashUserName);
+       // username=findViewById(R.id.dashUserName);
+        wordsTodayCount=findViewById(R.id.dashWordsTodayCount);
+        wordsTodayBadCount=findViewById(R.id.dashWordsTodayBadCount);
         word=findViewById(R.id.dashWord);
+        transcript=findViewById(R.id.dashTranscript);
         translate=findViewById(R.id.dashTranslate);
         Intent intent =getIntent();
         if(intent.getExtras()!=null){
             System.out.println("Extra="+intent.getExtras());
             String passedUserName=intent.getStringExtra("data");
-            username.setText("Welcom "+passedUserName);
+            //username.setText("Welcom "+passedUserName);
         }
 
         takeWord();
@@ -85,8 +92,12 @@ public class DashboardActivity extends AppCompatActivity {
                             System.out.println("Response=");
                             System.out.println("Response="+wordResponse.getWord());
                             word.setText(wordResponse.getWord());
+                            transcript.setText(wordResponse.getTranscript());
                             id=wordResponse.getId();
                             translate.setText(wordResponse.getId());
+                            wordsTodayCount.setText(wordResponse.getCountWord());
+                            wordsTodayBadCount.setText(wordResponse.getCountWordBad());
+
                             System.out.println("Id="+id);
                             //  startActivity(new Intent(DashboardActivity.this,DashboardActivity.class).putExtra("data",loginResponse.getEmail()));
                         }
@@ -128,6 +139,7 @@ public class DashboardActivity extends AppCompatActivity {
                             System.out.println("Response="+wordResponse.getWord());
                             word.setText(wordResponse.getWord());
                             id=wordResponse.getId();
+                            transcript.setText(wordResponse.getTranscript());
                             translate.setText(wordResponse.getId());
                             System.out.println("Id="+id);
                           //  startActivity(new Intent(DashboardActivity.this,DashboardActivity.class).putExtra("data",loginResponse.getEmail()));

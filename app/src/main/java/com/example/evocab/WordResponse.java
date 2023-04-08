@@ -13,6 +13,25 @@ public class WordResponse {
     private Boolean train1;
     private String transcript;
 
+    private String countWord;
+
+    private String countWordBad;
+
+    public String getCountWord() {
+        return countWord;
+    }
+
+    public void setCountWord(String countWord) {
+        this.countWord = countWord;
+    }
+
+    public String getCountWordBad() {
+        return countWordBad;
+    }
+
+    public void setCountWordBad(String countWordBad) {
+        this.countWordBad = countWordBad;
+    }
 
     public String getTrainDate() {
         return trainDate;

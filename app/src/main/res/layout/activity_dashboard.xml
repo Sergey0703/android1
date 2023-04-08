@@ -16,15 +16,55 @@
         android:layout_weight="1"
         android:layout_margin="10dp" >
 
-    <TextView
-        android:id="@+id/dashUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:text="User"
-        android:layout_margin="0dp"
-        android:textSize="20sp">
-    </TextView>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutCount"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_margin="0dp"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/dashWordsToday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|left"
+                android:padding="0dp"
+                android:text="Words today: "
+                android:textColor="@color/black"
+                android:textSize="20sp"></TextView>
+
+            <TextView
+                android:id="@+id/dashWordsTodayBad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:padding="0dp"
+                android:text="Bad today:"
+                android:textColor="@color/red"
+                android:textSize="20sp"></TextView>
+
+            <TextView
+                android:id="@+id/dashWordsTodayCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                app:layout_constraintLeft_toLeftOf="@id/dashWordsToday"
+                android:padding="0dp"
+                android:text="100"
+                android:textColor="@color/black"
+                android:textSize="20sp"></TextView>
+
+            <TextView
+                android:id="@+id/dashWordsTodayBadCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:padding="0dp"
+                android:text="8"
+                android:textColor="@color/red"
+                android:textSize="20sp"></TextView>
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/imageView"
@@ -54,8 +94,10 @@
             android:layout_height="50dp"
             android:layout_gravity="top"
             android:text="Word"
-            android:layout_margin="0dp"
-            android:textSize="20sp">
+            android:fontFamily="sans-serif"
+            android:textStyle="italic|bold"
+            android:textSize="30sp"
+            android:layout_margin="0dp">
         </TextView>
 
         <TextView
@@ -68,16 +110,17 @@
             android:textSize="20sp"></TextView>
     </FrameLayout>
 
-        <Button
+        <ImageButton
             android:id="@+id/btnSound"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
             android:layout_gravity="top|right"
-            android:onClick="onHelloBtnClick"
-            android:text="Sound"
-            android:background="@drawable/rounded_corner"
-            android:textSize="@dimen/buttonTextSize"></Button>
-
+            android:onClick="onSoundBtnClick"
+            android:background="@drawable/sound_br"
+            ></ImageButton>
+           <!--android:text="Sound"
+           android:textSize="@dimen/buttonTextSize"
+            android:background="@drawable/rounded_corner"-->
     </FrameLayout>
     <FrameLayout
         android:id="@+id/frameLayout3"
@@ -103,7 +146,9 @@
             android:onClick="onHelloBtnClick"
             android:text="Study"
             android:background="@drawable/rounded_corner"
+            android:textColor="@color/red"
             android:textSize="@dimen/buttonTextSize"></Button>
+        <!--android:background="@drawable/rounded_corner"-->
     </FrameLayout>
     <FrameLayout
         android:id="@+id/frameLayout4"
@@ -120,6 +165,7 @@
         android:text="Show/Hide Translate"
         android:layout_marginRight="5dp"
         android:background="@drawable/rounded_corner"
+        android:textColor="@color/orange"
         android:textSize="@dimen/buttonTextSize">
 
     </Button>
@@ -132,6 +178,7 @@
         android:id="@+id/btnWordOk"
         android:onClick="onOkBtnClick"
         android:background="@drawable/rounded_corner"
+        android:textColor="@color/green"
         android:text="I know">
 
     </Button>
