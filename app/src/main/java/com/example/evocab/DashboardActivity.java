@@ -18,6 +18,8 @@ import retrofit2.Response;
 public class DashboardActivity extends AppCompatActivity {
     Button btnWordOk;
     Button btnWordStudy;
+
+    Button btnWordTranslate;
     TextView wordsTodayCount;
     TextView wordsTodayBadCount;
 
@@ -34,6 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         btnWordOk=findViewById(R.id.btnWordOk);
         btnWordStudy=findViewById(R.id.btnWordStudy);
+        btnWordTranslate=findViewById(R.id.btnWordTranslate);
 
        // username=findViewById(R.id.dashUserName);
         wordsTodayCount=findViewById(R.id.dashWordsTodayCount);
@@ -41,6 +44,7 @@ public class DashboardActivity extends AppCompatActivity {
         word=findViewById(R.id.dashWord);
         transcript=findViewById(R.id.dashTranscript);
         translate=findViewById(R.id.dashTranslate);
+        translate.setVisibility(View.INVISIBLE);
         Intent intent =getIntent();
         if(intent.getExtras()!=null){
             System.out.println("Extra="+intent.getExtras());
@@ -49,6 +53,15 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
         takeWord();
+        btnWordTranslate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Translate");
+                //translate.setVisibility(View.VISIBLE);
+                translate.setVisibility(translate.getVisibility()==View.VISIBLE ? View.GONE : View.VISIBLE);
+
+            }
+        });
         btnWordOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,6 +155,9 @@ public class DashboardActivity extends AppCompatActivity {
                             transcript.setText(wordResponse.getTranscript());
                             translate.setText(wordResponse.getId());
                             System.out.println("Id="+id);
+
+                            wordsTodayCount.setText(wordResponse.getCountWord());
+                            wordsTodayBadCount.setText(wordResponse.getCountWordBad());
                           //  startActivity(new Intent(DashboardActivity.this,DashboardActivity.class).putExtra("data",loginResponse.getEmail()));
                         }
                     },700);
