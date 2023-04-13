@@ -123,6 +123,7 @@
             android:layout_gravity="top|right"
             android:onClick="onSoundBtnClick"
             android:background="@drawable/sound_br"
+
             ></ImageButton>
            <!--android:text="Sound"
            android:textSize="@dimen/buttonTextSize"
@@ -162,6 +163,16 @@
         android:layout_weight="1"
         android:layout_height="100dp"
         android:layout_margin="10dp" >
+
+        <TableLayout
+            android:id="@+id/frameLayoutBottom"
+            android:layout_width="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            >
+
+        <TableRow android:paddingBottom="5dp">
         <Button
         android:id="@+id/btnWordTranslate"
         android:layout_width="wrap_content"
@@ -169,10 +180,11 @@
         android:layout_gravity="bottom|left"
         android:onClick="onHelloBtnClick"
         android:text="Show/Hide Translate"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="3dp"
         android:background="@drawable/rounded_corner"
         android:textColor="@color/orange"
-        android:textSize="@dimen/buttonTextSize">
+        android:textSize="@dimen/buttonTextSize"
+        android:layout_marginBottom="0dp"    >
 
     </Button>
     <Button
@@ -185,8 +197,39 @@
         android:onClick="onOkBtnClick"
         android:background="@drawable/rounded_corner"
         android:textColor="@color/green"
+        android:layout_marginBottom="0dp"
         android:text="I know">
 
-    </Button>
+         </Button>
+        </TableRow>
+        <TableRow android:paddingBottom="5dp">
+            <Button
+                android:id="@+id/btnPrev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:onClick="onPrevBtnClick"
+                android:text="  Prev  "
+                android:layout_marginRight="3dp"
+                android:background="@drawable/rounded_corner"
+                android:textColor="@color/white"
+                android:textSize="@dimen/buttonTextSize"
+                >
+            </Button>
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:textSize="@dimen/buttonTextSize"
+                android:onClick="onNextBtnClick"
+                android:background="@drawable/rounded_corner"
+                android:textColor="@color/white"
+                android:text="  Next  ">
+
+            </Button>
+
+        </TableRow>
+        </TableLayout>
     </FrameLayout>
 </LinearLayout>
