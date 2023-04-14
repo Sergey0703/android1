@@ -27,6 +27,9 @@ public class DashboardActivity extends AppCompatActivity {
     Button btnWordStudy;
     Button btnWordTranslate;
     ImageButton btnSound;
+    Button btnPrev;
+    Button btnNext;
+
     TextView wordsTodayCount;
     TextView wordsTodayBadCount;
 
@@ -45,6 +48,8 @@ public class DashboardActivity extends AppCompatActivity {
         btnWordStudy=findViewById(R.id.btnWordStudy);
         btnWordTranslate=findViewById(R.id.btnWordTranslate);
         btnSound=findViewById(R.id.btnSound);
+        btnPrev=findViewById(R.id.btnPrev);
+        btnNext=findViewById(R.id.btnNext);
 
        // username=findViewById(R.id.dashUserName);
         wordsTodayCount=findViewById(R.id.dashWordsTodayCount);
@@ -60,7 +65,7 @@ public class DashboardActivity extends AppCompatActivity {
             //username.setText("Welcom "+passedUserName);
         }
 
-        takeWord(false, false);
+        takeWord(false, false, "empty");
         //sendWord(false, );
         btnWordTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +80,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
               System.out.println("Ok");
-              takeWord(true, true);
+              takeWord(true, true, null);
             }
         });
 
@@ -83,7 +88,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("Study");
-                takeWord(true,false);
+                takeWord(true,false, null);
             }
         });
 
@@ -92,6 +97,21 @@ public class DashboardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println("Sound");
                 playSound();
+            }
+        });
+
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Prev");
+                takeWord(false,false, "prev");
+            }
+        });
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Next");
+                takeWord(false,false, "next");
             }
         });
     }
@@ -129,7 +149,7 @@ public class DashboardActivity extends AppCompatActivity {
             mediaPlayer=null;
         }
     }
-    public void takeWord( Boolean action, Boolean status){
+    public void takeWord( Boolean action, Boolean status, String nav){
         Call<WordResponse> wordResponseCall =null;
         if(action) {
             WordRequest wordRequest = new WordRequest();
@@ -141,7 +161,8 @@ public class DashboardActivity extends AppCompatActivity {
             //Call<WordResponse> wordResponseCall=ApiClient.getApiService().getWord(wordRequest);
              wordResponseCall = ApiClient.getApiService().sendWord(wordRequest);
         }else{
-             wordResponseCall=ApiClient.getApiService().getWord();
+
+             wordResponseCall=ApiClient.getApiService().getWord(nav);
         }
         System.out.println("Ok3");
         wordResponseCall.enqueue(new Callback<WordResponse>() {

@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|right"
-
+                android:textStyle="italic|bold"
                 android:padding="0dp"
                 android:text="0"
                 android:textColor="@color/black"
@@ -73,6 +73,7 @@
                 android:padding="0dp"
                 android:text="0"
                 android:textColor="@color/red"
+                android:textStyle="italic|bold"
                 android:textSize="20sp"></TextView>
             </TableRow>
         </TableLayout>
@@ -139,7 +140,7 @@
             android:id="@+id/dashTranslate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
+            android:layout_gravity="top|left"
             android:text=""
             android:layout_margin="0dp"
             android:textSize="20sp">

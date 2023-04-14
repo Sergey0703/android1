@@ -6,20 +6,21 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    //private static final String BASE_URL = "http://10.0.2.2:8000/";
-    private static final String BASE_URL = "http://3.95.252.233:8000/";
+    private static Retrofit retrofit;
+    private static final String BASE_URL = "http://10.0.2.2:8000/";
+    //private static final String BASE_URL = "http://3.95.252.233:8000/";
     private static Retrofit getRetrofit(){
 
         HttpLoggingInterceptor httpLoggingInterceptor=new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient okHttpClient=new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
-
-        Retrofit retrofit=new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(BASE_URL)
-                .client(okHttpClient)
-                .build();
-
+        if(retrofit==null) {
+                    retrofit = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl(BASE_URL)
+                    .client(okHttpClient)
+                    .build();
+        }
         return retrofit;
     }
 

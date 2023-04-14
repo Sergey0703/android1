@@ -4,6 +4,8 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -14,6 +16,6 @@ public interface ApiService {
     @PATCH("api/words/")
     Call<WordResponse> sendWord(@Body WordRequest wordRequest);
     @GET("api/words/")
-    Call<WordResponse> getWord();
+    Call<WordResponse> getWord(@Query("nav") String nav);
 
 }
