@@ -16,6 +16,6 @@ public interface ApiService {
     @PATCH("api/words/")
     Call<WordResponse> sendWord(@Body WordRequest wordRequest);
     @GET("api/words/")
-    Call<WordResponse> getWord(@Query("nav") String nav);
+    Call<WordResponse> getWord(@Query("nav") String nav, @Query("_id") String id);
 
 }

@@ -169,9 +169,7 @@
             android:id="@+id/frameLayoutBottom"
             android:layout_width="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            >
+            android:layout_height="wrap_content">
 
         <TableRow android:paddingBottom="5dp">
         <Button
@@ -181,52 +179,57 @@
         android:layout_gravity="bottom|left"
         android:onClick="onHelloBtnClick"
         android:text="Show/Hide Translate"
-        android:layout_marginRight="3dp"
+        android:layout_marginRight="1dp"
         android:background="@drawable/rounded_corner"
         android:textColor="@color/orange"
         android:textSize="@dimen/buttonTextSize"
         android:layout_marginBottom="0dp"    >
 
     </Button>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dashUserName"
-        android:layout_gravity="bottom|right"
-        android:textSize="@dimen/buttonTextSize"
-        android:id="@+id/btnWordOk"
-        android:onClick="onOkBtnClick"
-        android:background="@drawable/rounded_corner"
-        android:textColor="@color/green"
-        android:layout_marginBottom="0dp"
-        android:text="I know">
 
-         </Button>
+            <Button
+                android:id="@+id/btnWordOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/rounded_corner"
+                android:onClick="onOkBtnClick"
+                android:text="I know"
+                android:textColor="@color/green"
+                android:textSize="@dimen/buttonTextSize">
+
+            </Button>
         </TableRow>
-        <TableRow android:paddingBottom="5dp">
+        <TableRow >
+
             <Button
                 android:id="@+id/btnPrev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|left"
-                android:onClick="onPrevBtnClick"
-                android:text="  Prev  "
-                android:layout_marginRight="3dp"
+                android:layout_marginRight="1dp"
                 android:background="@drawable/rounded_corner"
+                android:onClick="onPrevBtnClick"
+                android:text="Prev"
                 android:textColor="@color/white"
                 android:textSize="@dimen/buttonTextSize"
-                >
-            </Button>
+                android:drawableLeft="@android:drawable/ic_media_previous"
+                ></Button>
+
             <Button
                 android:id="@+id/btnNext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
-                android:textSize="@dimen/buttonTextSize"
-                android:onClick="onNextBtnClick"
                 android:background="@drawable/rounded_corner"
+                android:drawableRight="@android:drawable/ic_media_next"
+                android:onClick="onNextBtnClick"
+                android:text="Next"
                 android:textColor="@color/white"
-                android:text="  Next  ">
+                android:textSize="18dp"
+                android:layout_marginEnd="-8dp">
 
             </Button>
 

@@ -65,7 +65,7 @@ public class DashboardActivity extends AppCompatActivity {
             //username.setText("Welcom "+passedUserName);
         }
 
-        takeWord(false, false, "empty");
+        takeWord(false, false, null);
         //sendWord(false, );
         btnWordTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +162,7 @@ public class DashboardActivity extends AppCompatActivity {
              wordResponseCall = ApiClient.getApiService().sendWord(wordRequest);
         }else{
 
-             wordResponseCall=ApiClient.getApiService().getWord(nav);
+             wordResponseCall=ApiClient.getApiService().getWord(nav,id);
         }
         System.out.println("Ok3");
         wordResponseCall.enqueue(new Callback<WordResponse>() {
