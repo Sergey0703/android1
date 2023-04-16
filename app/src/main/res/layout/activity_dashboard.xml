@@ -103,8 +103,8 @@
             android:text=""
             android:fontFamily="sans-serif"
             android:textStyle="italic|bold"
-            android:textSize="30sp"
-            android:layout_margin="0dp">
+            android:textSize="30sp" >
+            <!-- app:drawableLeftCompat="@drawable/red_circle" -->
         </TextView>
 
         <TextView
@@ -165,21 +165,20 @@
         android:layout_height="100dp"
         android:layout_margin="10dp" >
 
-        <TableLayout
-            android:id="@+id/frameLayoutBottom"
-            android:layout_width="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_height="wrap_content">
-
-        <TableRow android:paddingBottom="5dp">
+    <FrameLayout
+        android:id="@+id/frameLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="0dp" >
         <Button
         android:id="@+id/btnWordTranslate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|left"
+        android:layout_gravity="top|left"
         android:onClick="onHelloBtnClick"
-        android:text="Show/Hide Translate"
-        android:layout_marginRight="1dp"
+        android:text="Show Translate"
+        android:layout_marginRight="0dp"
         android:background="@drawable/rounded_corner"
         android:textColor="@color/orange"
         android:textSize="@dimen/buttonTextSize"
@@ -192,8 +191,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="5dp"
+                android:layout_gravity="top|right"
+                android:layout_marginRight="0dp"
                 android:background="@drawable/rounded_corner"
                 android:onClick="onOkBtnClick"
                 android:text="I know"
@@ -201,15 +200,14 @@
                 android:textSize="@dimen/buttonTextSize">
 
             </Button>
-        </TableRow>
-        <TableRow >
+
 
             <Button
                 android:id="@+id/btnPrev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|left"
-                android:layout_marginRight="1dp"
+                android:layout_marginRight="0dp"
                 android:background="@drawable/rounded_corner"
                 android:onClick="onPrevBtnClick"
                 android:text="Prev"
@@ -229,11 +227,10 @@
                 android:text="Next"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:layout_marginEnd="-8dp">
+                android:layout_marginEnd="0dp">
 
             </Button>
+    </FrameLayout>
 
-        </TableRow>
-        </TableLayout>
     </FrameLayout>
 </LinearLayout>

@@ -73,7 +73,7 @@ public class DashboardActivity extends AppCompatActivity {
                 System.out.println("Translate");
                 //translate.setVisibility(View.VISIBLE);
                 translate.setVisibility(translate.getVisibility()==View.VISIBLE ? View.GONE : View.VISIBLE);
-
+                btnWordTranslate.setText(translate.getVisibility()==View.VISIBLE ? "HIDE TRANSLATE" : "SHOW TRANSLATE");
             }
         });
         btnWordOk.setOnClickListener(new View.OnClickListener() {
@@ -177,9 +177,14 @@ public class DashboardActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             translate.setVisibility(View.GONE);
-
+                            btnWordTranslate.setText("SHOW TRANSLATE");
                             System.out.println("Response="+wordResponse.getWord());
                             word.setText(wordResponse.getWord());
+                            if(wordResponse.getTrain1()==true) {
+                                word.setCompoundDrawablesWithIntrinsicBounds(R.drawable.green_circle, 0, 0, 0);
+                            }else{
+                                word.setCompoundDrawablesWithIntrinsicBounds(R.drawable.red_circle, 0, 0, 0);
+                            }
                             transcript.setText("["+wordResponse.getTranscript()+"]");
                             id=wordResponse.getId();
                             translate.setText(wordResponse.getTranslate());
@@ -188,7 +193,7 @@ public class DashboardActivity extends AppCompatActivity {
                             soundURL=wordResponse.getSound().substring(7);
                             soundURL=soundURL.substring(0,soundURL.length()-1);
 
-                            System.out.println("Id="+id+" sound="+soundURL);
+                            //System.out.println("Id="+id+" sound="+soundURL);
                             //  startActivity(new Intent(DashboardActivity.this,DashboardActivity.class).putExtra("data",loginResponse.getEmail()));
                         }
                     },700);
