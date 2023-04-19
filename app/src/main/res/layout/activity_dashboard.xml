@@ -92,7 +92,7 @@
     <FrameLayout
         android:id="@+id/frameLayout20"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_gravity="top|left"
         android:layout_margin="0dp" >
         <TextView
@@ -111,10 +111,20 @@
             android:id="@+id/dashTranscript"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="0dp"
+            android:text=""
+            android:textSize="20sp">
+        </TextView>
+        <TextView
+            android:id="@+id/dashTrainDate"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="bottom"
             android:layout_margin="0dp"
             android:text=""
-            android:textSize="20sp"></TextView>
+            android:textSize="20sp">
+        </TextView>
     </FrameLayout>
 
         <ImageButton

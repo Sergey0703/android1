@@ -1,12 +1,14 @@
 package com.example.evocab;
 
+import java.util.Date;
+
 public class WordResponse {
 
     private String id;
     private String word;
     private String translate;
 
-    private String trainDate;
+    private Date trainDate;
 
     private String sound;
 
@@ -33,11 +35,11 @@ public class WordResponse {
         this.countWordBad = countWordBad;
     }
 
-    public String getTrainDate() {
+    public Date getTrainDate() {
         return trainDate;
     }
 
-    public void setTrainDate(String trainDate) {
+    public void setTrainDate(Date trainDate) {
         this.trainDate = trainDate;
     }
 

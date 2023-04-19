@@ -39,6 +39,7 @@ public class DashboardActivity extends AppCompatActivity {
     TextView transcript;
     TextView translate;
 
+    TextView trainDate;
     String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class DashboardActivity extends AppCompatActivity {
         transcript=findViewById(R.id.dashTranscript);
         translate=findViewById(R.id.dashTranslate);
         translate.setVisibility(View.INVISIBLE);
+        trainDate=findViewById(R.id.dashTrainDate);
         Intent intent =getIntent();
         if(intent.getExtras()!=null){
             System.out.println("Extra="+intent.getExtras());
@@ -185,9 +187,11 @@ public class DashboardActivity extends AppCompatActivity {
                             }else{
                                 word.setCompoundDrawablesWithIntrinsicBounds(R.drawable.red_circle, 0, 0, 0);
                             }
-                            transcript.setText("["+wordResponse.getTranscript()+"]");
+                            transcript.setText("["+wordResponse.getTranscript()+"] ");
                             id=wordResponse.getId();
                             translate.setText(wordResponse.getTranslate());
+                           // trainDate.setText(wordResponse.getTrainDate());
+                            System.out.println("trainDate="+wordResponse.getTrainDate());
                             wordsTodayCount.setText(wordResponse.getCountWord());
                             wordsTodayBadCount.setText(wordResponse.getCountWordBad());
                             soundURL=wordResponse.getSound().substring(7);
