@@ -1,32 +1,41 @@
 package com.example.evocab;
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.speech.tts.TextToSpeech;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
+
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity {
+    String dateWithoutTime;
     String soundURL;
     MediaPlayer mediaPlayer;
     Button btnWordOk;
     Button btnWordStudy;
     Button btnWordTranslate;
     ImageButton btnSound;
+    Button btnSpeech;
     Button btnPrev;
     Button btnNext;
 
@@ -41,6 +50,10 @@ public class DashboardActivity extends AppCompatActivity {
 
     TextView trainDate;
     String id;
+    TextToSpeech textToSpeech;
+
+    LinearProgressIndicator lpi;
+    CircularProgressIndicator cpi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +62,7 @@ public class DashboardActivity extends AppCompatActivity {
         btnWordStudy=findViewById(R.id.btnWordStudy);
         btnWordTranslate=findViewById(R.id.btnWordTranslate);
         btnSound=findViewById(R.id.btnSound);
+        btnSpeech=findViewById(R.id.btnSpeech);
         btnPrev=findViewById(R.id.btnPrev);
         btnNext=findViewById(R.id.btnNext);
 
@@ -60,7 +74,25 @@ public class DashboardActivity extends AppCompatActivity {
         translate=findViewById(R.id.dashTranslate);
         translate.setVisibility(View.INVISIBLE);
         trainDate=findViewById(R.id.dashTrainDate);
+        lpi=findViewById(R.id.progressLineInd);
+        cpi=findViewById(R.id.progressCircleInd);
+        //lpi.setIndeterminate(true);
+        lpi.setVisibility(View.INVISIBLE);
+        cpi.setIndeterminate(true);
+
         Intent intent =getIntent();
+
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+
+                // if No error is found then only it will run
+                if(i!=TextToSpeech.ERROR){
+                    // To Choose language of speech
+                    textToSpeech.setLanguage(Locale.UK);
+                }
+            }
+        });
         if(intent.getExtras()!=null){
             System.out.println("Extra="+intent.getExtras());
             String passedUserName=intent.getStringExtra("data");
@@ -69,6 +101,14 @@ public class DashboardActivity extends AppCompatActivity {
 
         takeWord(false, false, null);
         //sendWord(false, );
+        btnSpeech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Speech");
+                playSpeech();
+
+            }
+        });
         btnWordTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,13 +157,18 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void playSpeech(){
+        System.out.println("Speech!");
+        textToSpeech.speak((String) word.getText(),TextToSpeech.QUEUE_FLUSH,null);
+    }
     public void playSound() {
         if(soundURL==null) return;
         if(mediaPlayer==null) {
             try {
+                System.out.println("Try play sound: "+soundURL);
                 mediaPlayer = new MediaPlayer();
-                mediaPlayer.setDataSource(soundURL);
+                mediaPlayer.setDataSource(soundURL.replaceAll(" ", "%20"));
+                //mediaPlayer.prepare();
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
                     @Override
@@ -152,6 +197,8 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
     public void takeWord( Boolean action, Boolean status, String nav){
+        cpi.setVisibility(View.VISIBLE);
+        //lpi.setIndeterminate(true);
         Call<WordResponse> wordResponseCall =null;
         if(action) {
             WordRequest wordRequest = new WordRequest();
@@ -172,12 +219,14 @@ public class DashboardActivity extends AppCompatActivity {
             public void onResponse(Call<WordResponse> call, Response<WordResponse> response) {
                 if (response.isSuccessful()){
                     System.out.println("Successful");
-                    Toast.makeText(DashboardActivity.this, " Successful",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(DashboardActivity.this, " Successful",Toast.LENGTH_LONG).show();
                     //  token=response.body().getToken();
                     WordResponse wordResponse= response.body();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            //lpi.setIndeterminate(false);
+                            cpi.setVisibility(View.INVISIBLE);
                             translate.setVisibility(View.GONE);
                             btnWordTranslate.setText("SHOW TRANSLATE");
                             System.out.println("Response="+wordResponse.getWord());
@@ -190,8 +239,19 @@ public class DashboardActivity extends AppCompatActivity {
                             transcript.setText("["+wordResponse.getTranscript()+"] ");
                             id=wordResponse.getId();
                             translate.setText(wordResponse.getTranslate());
-                           // trainDate.setText(wordResponse.getTrainDate());
+
                             System.out.println("trainDate="+wordResponse.getTrainDate());
+                            //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                            DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                            dateWithoutTime = sdf.format(wordResponse.getTrainDate());
+//                            try {
+//                                Date todayWithZeroTime = sdf.parse(sdf.format(wordResponse.getTrainDate()));
+//                                System.out.println("fff="+todayWithZeroTime);
+//                            } catch (ParseException e) {
+//                                throw new RuntimeException(e);
+//                            }
+                            System.out.println("trainDate2="+dateWithoutTime);
+                            trainDate.setText(dateWithoutTime);
                             wordsTodayCount.setText(wordResponse.getCountWord());
                             wordsTodayBadCount.setText(wordResponse.getCountWordBad());
                             soundURL=wordResponse.getSound().substring(7);

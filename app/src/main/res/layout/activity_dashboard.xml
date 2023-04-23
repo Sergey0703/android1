@@ -136,6 +136,15 @@
             android:background="@drawable/sound_br"
 
             ></ImageButton>
+        <Button
+            android:id="@+id/btnSpeech"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:text="Speech"
+            android:background="@drawable/rounded_corner"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttonTextSize"></Button>
            <!--android:text="Sound"
            android:textSize="@dimen/buttonTextSize"
             android:background="@drawable/rounded_corner"-->
@@ -166,6 +175,29 @@
             android:background="@drawable/rounded_corner"
             android:textColor="@color/red"
             android:textSize="@dimen/buttonTextSize"></Button>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressCircleInd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:indicatorColor="@color/white"
+            app:indicatorSize="100dp"
+            app:trackColor="@android:color/system_accent1_200"
+            app:trackThickness="4dp" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressLineInd"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_gravity="bottom"
+            android:indeterminate="true"
+            app:indicatorColor="@color/orange"
+            app:trackColor="@color/purple_700" />
+
+
+
         <!--android:background="@drawable/rounded_corner"-->
     </FrameLayout>
     <FrameLayout
