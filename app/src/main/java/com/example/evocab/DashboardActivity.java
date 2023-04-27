@@ -77,8 +77,8 @@ public class DashboardActivity extends AppCompatActivity {
         lpi=findViewById(R.id.progressLineInd);
         cpi=findViewById(R.id.progressCircleInd);
         //lpi.setIndeterminate(true);
-        lpi.setVisibility(View.INVISIBLE);
-        cpi.setIndeterminate(true);
+        lpi.setVisibility(View.GONE);
+        //cpi.setIndeterminate(true);
 
         Intent intent =getIntent();
 
@@ -197,6 +197,7 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
     public void takeWord( Boolean action, Boolean status, String nav){
+        cpi.setIndeterminate(true);
         cpi.setVisibility(View.VISIBLE);
         //lpi.setIndeterminate(true);
         Call<WordResponse> wordResponseCall =null;
@@ -226,6 +227,7 @@ public class DashboardActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             //lpi.setIndeterminate(false);
+                            cpi.setIndeterminate(false);
                             cpi.setVisibility(View.INVISIBLE);
                             translate.setVisibility(View.GONE);
                             btnWordTranslate.setText("SHOW TRANSLATE");

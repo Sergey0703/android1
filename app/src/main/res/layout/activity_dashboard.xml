@@ -181,7 +181,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:indeterminate="true"
+            android:indeterminate="false"
             app:indicatorColor="@color/white"
             app:indicatorSize="100dp"
             app:trackColor="@android:color/system_accent1_200"
@@ -192,7 +192,7 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_gravity="bottom"
-            android:indeterminate="true"
+            android:indeterminate="false"
             app:indicatorColor="@color/orange"
             app:trackColor="@color/purple_700" />
 
