@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -94,17 +95,15 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
         if(intent.getExtras()!=null){
-            System.out.println("Extra="+intent.getExtras());
             String passedUserName=intent.getStringExtra("data");
             //username.setText("Welcom "+passedUserName);
         }
 
         takeWord(false, false, null);
-        //sendWord(false, );
         btnSpeech.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Speech");
+                Log.d("testLogs","Speech");
                 playSpeech();
 
             }
@@ -112,7 +111,7 @@ public class DashboardActivity extends AppCompatActivity {
         btnWordTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Translate");
+                Log.d("testLog","Translate");
                 //translate.setVisibility(View.VISIBLE);
                 translate.setVisibility(translate.getVisibility()==View.VISIBLE ? View.GONE : View.VISIBLE);
                 btnWordTranslate.setText(translate.getVisibility()==View.VISIBLE ? "HIDE TRANSLATE" : "SHOW TRANSLATE");
@@ -121,51 +120,45 @@ public class DashboardActivity extends AppCompatActivity {
         btnWordOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              System.out.println("Ok");
-              takeWord(true, true, null);
+                 takeWord(true, true, null);
             }
         });
 
         btnWordStudy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Study");
-                takeWord(true,false, null);
+                 takeWord(true,false, null);
             }
         });
 
         btnSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Sound");
-                playSound();
+                  playSound();
             }
         });
 
         btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Prev");
-                takeWord(false,false, "prev");
+                  takeWord(false,false, "prev");
             }
         });
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Next");
-                takeWord(false,false, "next");
+                  takeWord(false,false, "next");
             }
         });
     }
     public void playSpeech(){
-        System.out.println("Speech!");
-        textToSpeech.speak((String) word.getText(),TextToSpeech.QUEUE_FLUSH,null);
+            textToSpeech.speak((String) word.getText(),TextToSpeech.QUEUE_FLUSH,null);
     }
     public void playSound() {
         if(soundURL==null) return;
         if(mediaPlayer==null) {
             try {
-                System.out.println("Try play sound: "+soundURL);
+                Log.d("testLog","Try play sound: "+soundURL);
                 mediaPlayer = new MediaPlayer();
                 mediaPlayer.setDataSource(soundURL.replaceAll(" ", "%20"));
                 //mediaPlayer.prepare();
@@ -207,19 +200,19 @@ public class DashboardActivity extends AppCompatActivity {
             //wordRequest.set_id("640fa746d552f3c5a1868767");
             wordRequest.setTrain1(status);
 
-            System.out.println("Ok2");
+            Log.d("testLogs","Ok2");
             //Call<WordResponse> wordResponseCall=ApiClient.getApiService().getWord(wordRequest);
              wordResponseCall = ApiClient.getApiService().sendWord(wordRequest);
         }else{
 
              wordResponseCall=ApiClient.getApiService().getWord(nav,id);
         }
-        System.out.println("Ok3");
+        Log.d("testLogs","Ok3");
         wordResponseCall.enqueue(new Callback<WordResponse>() {
             @Override
             public void onResponse(Call<WordResponse> call, Response<WordResponse> response) {
                 if (response.isSuccessful()){
-                    System.out.println("Successful");
+                    Log.d("testLogs","Successful");
                     //Toast.makeText(DashboardActivity.this, " Successful",Toast.LENGTH_LONG).show();
                     //  token=response.body().getToken();
                     WordResponse wordResponse= response.body();
@@ -231,7 +224,7 @@ public class DashboardActivity extends AppCompatActivity {
                             cpi.setVisibility(View.INVISIBLE);
                             translate.setVisibility(View.GONE);
                             btnWordTranslate.setText("SHOW TRANSLATE");
-                            System.out.println("Response="+wordResponse.getWord());
+                            Log.d("testLog","Response="+wordResponse.getWord());
                             word.setText(wordResponse.getWord());
                             if(wordResponse.getTrain1()==true) {
                                 word.setCompoundDrawablesWithIntrinsicBounds(R.drawable.green_circle, 0, 0, 0);
@@ -242,7 +235,7 @@ public class DashboardActivity extends AppCompatActivity {
                             id=wordResponse.getId();
                             translate.setText(wordResponse.getTranslate());
 
-                            System.out.println("trainDate="+wordResponse.getTrainDate());
+                            Log.d("testLogs","trainDate="+wordResponse.getTrainDate());
                             //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                             DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                             dateWithoutTime = sdf.format(wordResponse.getTrainDate());
@@ -252,31 +245,29 @@ public class DashboardActivity extends AppCompatActivity {
 //                            } catch (ParseException e) {
 //                                throw new RuntimeException(e);
 //                            }
-                            System.out.println("trainDate2="+dateWithoutTime);
+                            Log.d("testLogs","trainDate2="+dateWithoutTime);
                             trainDate.setText(dateWithoutTime);
                             wordsTodayCount.setText(wordResponse.getCountWord());
                             wordsTodayBadCount.setText(wordResponse.getCountWordBad());
                             soundURL=wordResponse.getSound().substring(7);
                             soundURL=soundURL.substring(0,soundURL.length()-1);
 
-                            //System.out.println("Id="+id+" sound="+soundURL);
                             //  startActivity(new Intent(DashboardActivity.this,DashboardActivity.class).putExtra("data",loginResponse.getEmail()));
                         }
                     },700);
                 }else{
-                    System.out.println("Failed....");
+                    Log.d("testLogs","Failed....");
                     Toast.makeText(DashboardActivity.this, " Failed",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<WordResponse> call, Throwable t) {
-                System.out.println("Trouble "+t.getLocalizedMessage());
+                Log.d("testLogs","Trouble "+t.getLocalizedMessage());
                 Toast.makeText(DashboardActivity.this, "Trouble "+t.getLocalizedMessage() ,Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    /////////////////////////////////////
 
 }

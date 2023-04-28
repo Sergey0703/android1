@@ -34,15 +34,16 @@
             android:padding="0dp">
 
             <TableRow>
-            <TextView
-                android:id="@+id/dashWordsToday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|left"
-                android:padding="0dp"
-                android:text="Words today: "
-                android:textColor="@color/black"
-                android:textSize="20sp"></TextView>
+
+                <TextView
+                    android:id="@+id/dashWordsToday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|left"
+                    android:padding="0dp"
+                    android:text="Words today: "
+                    android:textColor="@color/black"
+                    android:textSize="20sp"></TextView>
 
             <TextView
                 android:id="@+id/dashWordsTodayCount"
